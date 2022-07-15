@@ -19,4 +19,4 @@ jobs:
 
       - name: Sync output to S3
         run: |
-          aws s3 sync ./_site/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+          aws s3 sync ./_site/ s3://test-s3bucket-for-github-actions --delete
