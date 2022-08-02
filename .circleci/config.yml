@@ -79,14 +79,15 @@ jobs:
             sudo apt install python3-pip
             sudo pip3 install awsebcli --upgrade
       - run: aws s3 sync . s3://test-s3bucket-for-github-actions
+      - test:
+          filters:
+            branches:
+              only:
+                - main
+
 
 workflows:
   version: '2'
   execute_bulk:
     jobs:
       - build_deploy
-#      - test:
-#          filters:
-#            branches:
-#              only:
-#                - main
