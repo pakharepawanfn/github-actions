@@ -66,21 +66,22 @@
 #      - build
 
 version: '2.1'
-
-name: Dump Code Into AWS S3
-
-on:
-  push:
-    branches: [ "main" ]
-
-orbs:
-  aws-s3: circleci/aws-s3@3.0
 jobs:
-  build:
-    docker:
-      - image: 'cimg/python:3.6'
-    runs-on: ubuntu-latest
+  build_deploy:
+    machine:
+      image: ubuntu-2004:current
     steps:
-      - uses: actions/checkout@v3
-      - uses: aws-actions/configure-aws-credentials@v1
+      - checkout
+      - run:
+          name: Installing AWS CLI
+          command: |
+            sudo apt-get update
+            sudo apt install python3-pip
+            sudo pip3 install awsebcli --upgrade
       - run: aws s3 sync . s3://test-s3bucket-for-github-actions
+
+workflows:
+  version: '2'
+  execute_bulk:
+    jobs:
+      - build_deploy
