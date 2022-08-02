@@ -14,7 +14,7 @@ commands:
             aws --version
 
 jobs:
-  build_deploy:
+  build:
     machine:
       image: ubuntu-2004:202010-01
 
