@@ -85,7 +85,7 @@ workflows:
   execute_bulk:
     jobs:
       - build_deploy
-      - filters:
-          branches:
-            only:
-              - main
+        - filters:
+            branches:
+              only:
+                - main
