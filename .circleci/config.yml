@@ -1,0 +1,23 @@
+version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@3.0.0
+
+jobs:
+  build:
+    docker:
+      - image: 'circleci/python:latest'
+
+    steps:
+      - checkout
+      - aws-s3/sync:
+          from: .
+          to: 's3://test-s3bucket-for-github-actions'
+          arguments: |
+            --acl public-read \
+            --exclude ".git/*" \
+            --exclude ".gitignore" \
+            --exclude ".circleci/*" \
+          overwrite: true
+          filters:
+            branches:
+              only: /^main.*$/
