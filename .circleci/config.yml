@@ -63,10 +63,10 @@ jobs:
 #            --cache-control "max-age=86400"
           from: .
           to: 's3://test-s3bucket-for-github-actions'
-      - aws-s3/copy:
+#      - aws-s3/copy:
 #          arguments: '--dryrun'
-          from: .
-          to: 's3://test-s3bucket-for-github-actions'
+#          from: .
+#          to: 's3://test-s3bucket-for-github-actions'
 workflows:
   s3-example:
     jobs:
