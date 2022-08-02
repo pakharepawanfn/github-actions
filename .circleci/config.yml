@@ -83,8 +83,8 @@ jobs:
 workflows:
   version: '2'
   execute_bulk:
-#    jobs:
-#      - build_deploy
+    jobs:
+      - build_deploy
 #      - test:
 #          filters:
 #            branches:
