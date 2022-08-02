@@ -9,10 +9,10 @@ jobs:
 
     steps:
       - checkout
-      - aws-s3/sync:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-region: AWS_REGION
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#      - aws-s3/sync:
+#          aws-access-key-id: AWS_ACCESS_KEY_ID
+#          aws-region: AWS_REGION
+#          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - aws-s3/sync:
           from: .
           to: 's3://test-s3bucket-for-github-actions'
