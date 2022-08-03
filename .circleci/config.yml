@@ -47,42 +47,42 @@
 #      - build
 #
 #
-#version: '2.1'
-#orbs:
-#  aws-s3: circleci/aws-s3@3.0
-#jobs:
-#  build:
-#    docker:
-#      - image: 'cimg/python:3.6'
-#    steps:
-#      - checkout
-#      - aws-s3/sync:
-#         from: .
-#          to: 's3://test-s3bucket-for-github-actions'
-#
-#workflows:
-#  s3-example:
-#    jobs:
-#      - build
-#
 version: '2.1'
+orbs:
+  aws-s3: circleci/aws-s3@3.0
 jobs:
-  build_deploy:
-    machine:
-      image: ubuntu-2004:current
+  build:
+    docker:
+      - image: 'cimg/python:3.6'
     steps:
       - checkout
-      - run:
-          name: Installing AWS CLI
-          command: |
-            sudo apt-get update
-            sudo apt install python3-pip
-            sudo pip3 install awsebcli --upgrade
-      - run: aws s3 sync . s3://test-s3bucket-for-github-actions
-      - overwrite: true
+      - aws-s3/sync:
+         from: .
+          to: 's3://test-s3bucket-for-github-actions'
+          overwrite: true
 
 workflows:
-  version: '2'
-  S3_sync:
+  s3-example:
     jobs:
-      - build_deploy
+      - build
+
+#version: '2.1'
+#jobs:
+#  build_deploy:
+#    machine:
+#      image: ubuntu-2004:current
+#    steps:
+#      - checkout
+#      - run:
+#          name: Installing AWS CLI
+#          command: |
+#            sudo apt-get update
+#            sudo apt install python3-pip
+#            sudo pip3 install awsebcli --upgrade
+#      - run: aws s3 sync . s3://test-s3bucket-for-github-actions
+#
+#workflows:
+#  version: '2'
+#  S3_sync:
+#    jobs:
+#      - build_deploy
