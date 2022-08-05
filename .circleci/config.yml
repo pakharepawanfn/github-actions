@@ -62,9 +62,13 @@ jobs:
           overwrite: "true"
 
 workflows:
+  version: 2.1
   s3-example:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: test2
 
 #version: '2.1'
 #jobs:
