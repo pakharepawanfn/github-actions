@@ -59,7 +59,7 @@ jobs:
       - aws-s3/sync:
          from: .
           to: 's3://test-s3bucket-for-github-actions'
-          overwrite: true
+          overwrite: "true"
 
 workflows:
   s3-example:
