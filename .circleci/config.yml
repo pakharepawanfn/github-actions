@@ -47,7 +47,7 @@
 #      - build
 #
 #
-version: '2.1'
+version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.0
 jobs:
@@ -58,13 +58,17 @@ jobs:
       - checkout
       - aws-s3/sync:
          from: .
-          to: 's3://test-s3bucket-for-github-actions'
-          overwrite: true
+         to: 's3://test-s3bucket-for-github-actions'
+#         overwrite: "true"
 
 workflows:
+  version: 2.1
   s3-example:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: test2
 
 #version: '2.1'
 #jobs:
