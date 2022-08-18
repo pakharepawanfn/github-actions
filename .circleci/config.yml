@@ -59,7 +59,6 @@ jobs:
       - aws-s3/sync:
          from: .
          to: 's3://test-s3bucket-for-github-actions'
-#         overwrite: "true"
 
 workflows:
   version: 2.1
@@ -68,7 +67,7 @@ workflows:
       - build:
           filters:
             branches:
-              only: test2
+              only: main
 
 #version: '2.1'
 #jobs:
